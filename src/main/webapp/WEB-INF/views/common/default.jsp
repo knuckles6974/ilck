@@ -373,6 +373,22 @@
 	<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 	<script src="http://code.jquery.com/jquery-latest.js"></script>
 	<script>
+		function sell()
+		{
+			var chk = new XMLHttpRequest();
+			var userid = sessionStorage.getItem()
+			chk.onload= function()
+			{
+				if(userid==null)
+				{
+					alert("로그인을 하시기 바랍니다");
+				}
+			}
+			chk.open("get","wishadd?userid=${pvo.userid}&userid=${pvo.userid}");
+			chk.send();
+
+		}
+
 
 		window.Kakao.init("a3bfb6ab0dd5e068f7d0caadb4a4e7ac");
 		function kakaoLogout() {
@@ -530,7 +546,7 @@
 	<div id="menu1">
 		<a href="../mypage/mypage?ww=0"><img src="../resources/img/account.png" id="account"><span id="acc">내상점</span></a> <span id="vline">|</span>
 		<a href=""><img src="../resources/img/talk.png" id="talk"><span id="tal"> 블루톡</span></a> <span id="vline">|</span>
-		<a href="../panmae/pnew"><img src="../resources/img/sell.png" id="sell"><span id="sel">판매하기</span></a>
+		<a href="../panmae/pnew"><img src="../resources/img/sell.png" id="sell"><span id="sel" onclick="sell()">판매하기</span></a>
 	</div>
 
 

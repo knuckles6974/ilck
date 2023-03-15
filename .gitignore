@@ -20,7 +20,5 @@ buildNumber.properties
 .idea
 ilck.iml
 
-pom.xml
-
 
 !/.gitignore
