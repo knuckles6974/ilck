@@ -376,15 +376,12 @@
 		function sell()
 		{
 			var chk = new XMLHttpRequest();
-			var userid = sessionStorage.getItem()
+			var userid = sessi
 			chk.onload= function()
 			{
-				if(userid==null)
-				{
-					alert("로그인을 하시기 바랍니다");
-				}
+
 			}
-			chk.open("get","wishadd?userid=${pvo.userid}&userid=${pvo.userid}");
+			chk.open("get","wishadd?pid=${pvo.id}&userid=${pvo.userid}");
 			chk.send();
 
 		}
