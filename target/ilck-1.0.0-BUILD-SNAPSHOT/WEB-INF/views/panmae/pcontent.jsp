@@ -16,13 +16,14 @@
         }
         section #title {
             width:1000px;
-            height:400px;
+            height:450px;
             margin:auto;
         }
         section #title > #left {
             width:500px;
             height:400px;
             float:left;
+
 
         }
         section #title > #right {
@@ -32,13 +33,11 @@
             position:relative;
         }
         #pimg{
-            width:100px;
-            margin-top:5px;
-            margin-left:210px;
-            margin-bottom:50px;
-
+            width: 100px;
+            margin-left: 210px;
+            margin-bottom: 50px;
+            margin-top: 5px;
         }
-
         section #content {
             width:1000px;
             height:500px;
@@ -284,27 +283,21 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script>
-        $(function()
 
+        $(function()
         {
 
             $("#pimg").mouseover(function()
-
             {
-
                 $("#mainimg").attr("src","../resources/pro/${pvo.pimg}");
-
             });
-
             $("#pimg").mouseout(function()
-
             {
-
                 $("#mainimg").attr("src","../resources/pro/${pvo.cimg}");
-
             });
-
         });
+
+
 
         function singo()
         {
@@ -356,22 +349,6 @@
 
 
         }
-
-        var win_width=window.screen.width/2-225;
-        var win_height=window.screen.height/2-330;
-
-        function go_room_check()
-        {
-            var writer='${userid}';
-            var opponent='${pvo.userid}';
-
-            open("../chat/room_check?writer="+writer+"&opponent="+opponent, "",
-                "width=550,height=620,left="+win_width+",top="+win_height);
-
-//          alert(win_width+"////"+win_height);
-//         alert(writer+"/"+opponent);
-        }
-
 
 
 
@@ -461,12 +438,6 @@
 
         }
 
-        #deobogi{
-            width: 344px;
-            height: 50px;
-            margin-bottom: 5px;
-        }
-
 
     </style>
 </head>
@@ -475,12 +446,13 @@
 <section>
     <div id="title">
         <div id="left" align="center"> <img src="../resources/pro/${pvo.cimg}" id="mainimg" width="400" height="345"> </div>
+
         <div id="right">
             <form name="pform" id="ggim">
                 <input type="hidden" name="pcode" value="${pvo.pcode}">
                 <input type="hidden" name="singo_state" value="${pvo.singo_state}">
                 <input type="hidden" name="pstate" value="${pvo.pstate}">
-                <input type="hidden" name="state" value="${mvo.state}">
+                <input type="hidden" name="puserid" value="${pvo.userid}">
 
 
                 <div id="ptitle"> ${pvo.title}</div>
@@ -532,12 +504,8 @@
 
                 <div id="btn">
                     <span id="gim" onclick="ggim()" style="cursor:pointer"> 찜 </span>
-                    <c:if test="${userid!=null}">
-                        <span id="bolt" style="cursor:pointer" onclick="go_room_check()"> 블루톡 </span>
-                    </c:if>
+                    <span id="bolt" style="cursor:pointer"> 번개톡 </span>
                 </div>
-
-
             </form>
         </div>
     </div>
@@ -546,10 +514,12 @@
         <img src="../resources/pro/${pvo.pimg} "height="80" width="80" id="subimg" >
     </div>
 
+
+
     <div id="related">연관상품</div>
     <div>
         <c:forEach  items="${cimg}" var="cmg">
-            <img id="rproducts" src="../resources/pro/${cmg.cimg}">
+            <img id="rproducts" src="../resources/product/${cmg.cimg}">
         </c:forEach>
     </div>
 
@@ -577,7 +547,7 @@
 
             <div>
                 <c:forEach  items="${twoimgs}" var="imgs">
-                    <img id="proimg" src="../resources/pro/${imgs.cimg}">
+                    <img id="proimg" src="../resources/product/${imgs.cimg}">
                 </c:forEach>
             </div>
 
@@ -677,4 +647,5 @@
     </style>
 </body>
 </html>
+
 
