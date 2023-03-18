@@ -27,13 +27,13 @@
     </select>
 
     <select id="plist" resultType="kr.co.ilck.vo.PanmaeVo">
-    select * from panmae where pcode like concat(#{param1}, '%')
-        limit #{param2}, 16
+        select * from panmae where sstate!=2 and pcode like concat(#{param1}, '%')
+        limit #{param2}, 20
     </select>
 
     <insert id="panmae_ok" parameterType="kr.co.ilck.vo.PanmaeVo">
-    insert into panmae(userid ,cimg,pimg,title,price,pcode,selltime,loca,pstate,content,writeday)
-    values(#{userid},#{cimg},#{pimg},#{title},#{price},#{pcode},#{selltime},#{loca},#{pstate},#{content},now())
+        insert into panmae(userid ,cimg,pimg,title,price,pcode,selltime,loca,pstate,content,writeday)
+        values(#{userid},#{cimg},#{pimg},#{title},#{price},#{pcode},#{selltime},#{loca},#{pstate},#{content},now())
     </insert>
 
     <update id="readnum">
@@ -57,15 +57,15 @@
     </insert>
 
     <select id="getcpcode" resultType="int">
-        select count(pcode) from panmae as p where  p.userid
+        select count(pcode) from panmae where  userid=#{param}
     </select>
 
     <select id="getcimg" resultType="kr.co.ilck.vo.PanmaeVo">
-    select cimg from panmae where pcode like concat(#{param},'%') order by rand() limit 4
+        select cimg from panmae where pcode like concat(#{param},'%') order by rand() limit 4
     </select>
 
     <select id="getwishcount" resultType="int">
-    select count(*) from wish where pid=#{param1} and userid=#{param2}
+        select count(*) from wish where pid=#{param1} and userid=#{param2}
 
     </select>
 
@@ -81,12 +81,5 @@
         select * from panmae where pcode like concat(#{param1},'%') order by  ${param2}
 
     </select>
-<!--
-    <insert id="singo_ok" resultType="kr.co.ilck.vo.SingoVo">
-        insert into singo(userid ,writeday,singo_userid,pid,content, title)
-        values(#{userid},now(),#{singo_userid},#{pid},#{content}, #{title})
-    </insert>
-
--->
 
 </mapper>
