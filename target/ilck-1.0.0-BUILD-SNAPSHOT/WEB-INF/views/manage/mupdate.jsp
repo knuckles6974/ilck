@@ -93,7 +93,6 @@
         </table>
 
     </form>
-    <input type="submit" align="right" id="del" value="상품삭제" onclick="location='mdelete?pcode=${pvo.pcode}'">
 </div>
 </body>
 </html>

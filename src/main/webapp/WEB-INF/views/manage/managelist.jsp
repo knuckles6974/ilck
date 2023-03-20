@@ -52,6 +52,7 @@
         .search-box input[type="text"]:focus + button[type="submit"] i.fas {
             color: #333;
         }
+
     </style>
     <script>
         function getchangenum(num)
@@ -64,6 +65,20 @@
         function getchangestate(state)
         {
             location="sellstate?state="+state;
+        }
+        function del(pcode)
+        {
+            if(confirm("정말 삭제하시겠습니까?"))
+            {
+                location="mdelete?pcode="+pcode;
+
+            }
+            else
+            {
+                alert("제출실패");
+            }
+
+
         }
 
     </script>
@@ -123,7 +138,10 @@
                 <td align="center"> ${mvo.title} </td>
                 <td align="center"> <fmt:formatNumber value="${mvo.price}" pattern="#,###" type="number"/>원</td>
                 <td align="center"> ${mvo.writeday} </td>
-                <td align="center"> <a href="../manage/mupdate?pcode=${mvo.pcode}">수 정</a></td>
+                <td align="center"> <a href="../manage/mupdate?pcode=${mvo.pcode}">수 정</a>
+
+                    <span onclick="del('${mvo.pcode}')" id="delete" style=color:red cursor=pointer;>삭제</span>
+                </td>
             </tr>
 
             </c:forEach>
