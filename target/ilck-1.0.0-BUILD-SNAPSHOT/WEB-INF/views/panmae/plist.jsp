@@ -11,7 +11,7 @@
     <script>
         function filter_product(n)
         {
-            location="liststate?n="+n+"&pcode=${pvo.pcode}";
+            location="liststate?n="+n+"&pcode=${fpcode}";
 
         }
     </script>

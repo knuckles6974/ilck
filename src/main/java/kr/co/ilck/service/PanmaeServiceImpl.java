@@ -146,6 +146,7 @@ public class PanmaeServiceImpl implements PanmaeService {
 	@Override
 	public String plist(HttpServletRequest request, Model model) {
 		String pcode=request.getParameter("pcode");
+		model.addAttribute("fpcode",pcode);
 
 		int page;
 		if(request.getParameter("page")==null)
@@ -250,6 +251,7 @@ public class PanmaeServiceImpl implements PanmaeService {
 	public String liststate(HttpServletRequest request,Model model)
 	{
 		String pcode = request.getParameter("pcode");
+		model.addAttribute("fcode",pcode);
 
 		int n = Integer.parseInt(request.getParameter("n"));
 
