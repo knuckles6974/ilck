@@ -20,9 +20,10 @@
 		}
 		body {
 			margin:0px;
-
 			font-family: 'GmarketSansMedium';
-			font-size: 100%
+			src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+			font-weight: normal;
+			font-style: normal;
 		}
 		header {
 			width:1000px;
@@ -30,7 +31,6 @@
 			margin:auto;
 			font-size:13px;
 			position:relative;
-
 		}
 		header #left {
 			position:relative;
@@ -42,7 +42,7 @@
 		header #right {
 			position:relative;
 			display:inline-block;
-			left:765px;
+			left:755px;
 			top:1px;
 			color:#696969;
 			height:30px;
@@ -66,7 +66,7 @@
 		header #gogaeksub {
 			padding-left:0px;
 			position:absolute;
-			left:50px;
+			left:57px;
 			top:14px;
 			border:1px solid #cccccc;
 			padding:4px;
@@ -123,7 +123,12 @@
 			width:424px;
 			border:1px solid #4776b4;
 			padding:10px 12px;
-			outline: none;
+			outline:none;
+			font-size:14px;
+			font-family: 'GmarketSansMedium';
+			src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+			font-weight: normal;
+			font-style: normal;
 		}
 		nav #dot {
 			position:absolute;
@@ -137,7 +142,7 @@
 			position:relative;
 			display:inline-block;
 			top:15px;
-			left:122px;
+			left:105px;
 		}
 		nav #account {
 			width:30px;
@@ -180,7 +185,7 @@
 			display:inline-block;
 			position:relative;
 			left:-5px;
-			top:16px;
+			top:15px;
 			z-index:9999;
 		}
 		nav #main > li {
@@ -235,7 +240,7 @@
 			width:150px;
 			height:500px;
 			left:20px;
-			top:35px;
+			top:33px;
 			padding-left:15px;
 			padding-top:5px;
 			background:white;
@@ -254,6 +259,7 @@
 		nav #category .dae > li > span a:hover {
 			color:#4776b4;
 			text-decoration:underline;
+
 		}
 
 		nav .dae .jung {
@@ -311,19 +317,19 @@
 		footer #f1 {
 			position:relative;
 			display:inline-block;
-			left:545px;
+			left:550px;
 			top:-200px;
 		}
 		footer #f2 {
 			position:relative;
 			display:inline-block;
-			left:-270px;
+			left:-300px;
 			top:5px;
 		}
 		footer #f3 {
 			position:relative;
 			display:inline-block;
-			left:545px;
+			left:550px;
 			top:-140px;
 		}
 
@@ -331,8 +337,9 @@
 			position: absolute;
 			width: 95px;
 			height: 250px;
-			left:1010px;
-			top: 140px;
+			left:1030px;
+			top: 150px;
+			z-index:9999;
 		}
 		#floatMenu #float1 {
 			border:1px solid black;
@@ -350,6 +357,7 @@
 			height:190px;
 			text-align:center;
 			padding-top:5px;
+			background:white;
 		}
 		#floatMenu #float3 {
 			position: relative;
@@ -366,14 +374,13 @@
 		hr {
 			border:0px;
 			height:0.5px;
-			background-color:#cccccc;
+			background-color:#eeeeee;
 		}
 
 	</style>
 	<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 	<script src="http://code.jquery.com/jquery-latest.js"></script>
 	<script>
-
 		window.Kakao.init("a3bfb6ab0dd5e068f7d0caadb4a4e7ac");
 		function kakaoLogout() {
 			if (!Kakao.Auth.getAccessToken()) {
@@ -404,6 +411,7 @@
 		{
 			alert("Ctrl+D 키를 누르면 즐겨찾기에 추가하실 수 있습니다.");
 		}
+
 
 
 		$(function()
@@ -442,13 +450,48 @@
 				$("nav .dae .jung").eq(n).show();
 			});
 
-			$("nav .jung > li").mouseover(function()
+
+			// 중분류에 id로 jung1,2,3,4,5부여하여 작동
+			$("nav #jung1 > li").mouseover(function()
 			{
 				for(i=0;i<$(".so").length;i++)
-					$("nav .jung .so").eq(i).hide();
+					$("nav #jung1 .so").eq(i).hide();
 
 				var n=$(this).index();
-				$("nav .jung .so").eq(n).show();
+				$("nav #jung1 .so").eq(n).show();
+			});
+
+			$("nav #jung2 > li").mouseover(function()
+			{
+				for(i=0;i<$(".so").length;i++)
+					$("nav #jung2 .so").eq(i).hide();
+
+				var n=$(this).index();
+				$("nav #jung2 .so").eq(n).show();
+			});
+			$("nav #jung3 > li").mouseover(function()
+			{
+				for(i=0;i<$(".so").length;i++)
+					$("nav #jung3 .so").eq(i).hide();
+
+				var n=$(this).index();
+				$("nav #jung3 .so").eq(n).show();
+			});
+			$("nav #jung4 > li").mouseover(function()
+			{
+				for(i=0;i<$(".so").length;i++)
+					$("nav #jung4 .so").eq(i).hide();
+
+				var n=$(this).index();
+				$("nav #jung4 .so").eq(n).show();
+			});
+			$("nav #jung5 > li").mouseover(function()
+			{
+				for(i=0;i<$(".so").length;i++)
+					$("nav #jung5 .so").eq(i).hide();
+
+				var n=$(this).index();
+				$("nav #jung5 .so").eq(n).show();
 			});
 
 			$(document).ready(function() {
@@ -477,6 +520,15 @@
 		});
 
 
+		var win_width=window.screen.width/2-225;
+		var win_height=window.screen.height/2-345;
+
+		function go_chating_list()
+		{
+			open("../chat/chating_list", "",
+					"width=550,height=650,left="+win_width+",top="+win_height);
+		}
+
 
 	</script>
 </head>
@@ -492,15 +544,20 @@
 			<a href="../login/login"> 로그인/회원가입 </a> |
 		</c:if>
 
-		<c:if test="${userid != null }">
-			${name}님  |
+		<c:if test="${userid != null && userid != 'admin' }">
+			${name}님 |
+			<a href="../login/logout"> 로그아웃 </a> |
+		</c:if>
+
+		<c:if test="${userid == 'admin'}">
+			<a href="../admin/admin_page">관리하기</a> |
 			<a href="../login/logout"> 로그아웃 </a> |
 		</c:if>
 
 		<div id="gogaek"> 고객센터 ▼
 			<ul id="gogaeksub">
-				<li><a href="../gogaek/notice"> 공지사항 </a></li>
-				<li> 자주하는 질문</li>
+				<li><a href="../gongji/gongji"> 공지사항 </a></li>
+				<li><a href="../qna/qna">자주하는 질문</a></li>
 				<li> 1:1 문의 </li>
 			</ul>
 		</div>
@@ -529,16 +586,23 @@
 
 	<div id="menu1">
 		<a href="../mypage/mypage?ww=0"><img src="../resources/img/account.png" id="account"><span id="acc">내상점</span></a> <span id="vline">|</span>
-		<a href=""><img src="../resources/img/talk.png" id="talk"><span id="tal"> 블루톡</span></a> <span id="vline">|</span>
+
+		<c:if test="${userid!=null}">
+			<span onclick="go_chating_list()" style="cursor:pointer;"><img src="../resources/img/talk.png" id="talk"><span id="tal"> 블루톡</span></span> <span id="vline">|</span>
+		</c:if>
+
+		<c:if test="${userid==null}">
+			<span style="cursor:pointer;"><img src="../resources/img/talk.png" id="talk"><span id="tal"> 블루톡</span></span> <span id="vline">|</span>
+		</c:if>
+
 		<a href="../panmae/pnew"><img src="../resources/img/sell.png" id="sell"><span id="sel">판매하기</span></a>
 	</div>
 
-
 	<ul id="main">
 		<li id="category">≡ 카테고리
-			<ul class="dae" >
+			<ul class="dae">
 				<li><span><a href="../panmae/plist?pcode=p01">여성의류</a></span>
-					<ul class="jung">
+					<ul class="jung" id="jung1">
 						<li> <span> <a href="../panmae/plist?pcode=p0101"> 패딩/점퍼</a></span>
 							<ul class="so">
 								<li> <span> <a href="../panmae/plist?pcode=p010101">롱패딩</a></span></li>
@@ -561,25 +625,138 @@
 								<li> <span> <a href="../panmae/plist?pcode=p010302">스트라이프 셔츠</a></span></li>
 								<li> <span> <a href="../panmae/plist?pcode=p010303">체크 셔츠</a></span></li>
 								<li> <span> <a href="../panmae/plist?pcode=p010304">청/데님 셔츠</a></span></li>
-								<li> <span> <a href="../panmae/plist?pcode=p010305">기타(셔츠)</a></span></li>
+							</ul>
+						</li>
+						<li> <span> <a href="../panmae/plist?pcode=p0104">기타</a></span>
+							<ul class="so">
+								<li> <span> <a href="../panmae/plist?pcode=p010401">기타(여성의류)</a></span></li>
 							</ul>
 						</li>
 					</ul>
-
-
 				</li>
-				<li>남성의류 </li>
-				<li>시계/쥬얼리 </li>
-				<li>신발 </li>
-				<li>가방 </li>
+				<li><span><a href="../panmae/plist?pcode=p02">남성의류</a></span>
+					<ul class="jung" id="jung2">
+						<li> <span> <a href="../panmae/plist?pcode=p0201"> 패딩/점퍼</a></span>
+							<ul class="so">
+								<li> <span> <a href="../panmae/plist?pcode=p020101">롱패딩</a></span></li>
+								<li> <span> <a href="../panmae/plist?pcode=p020102">숏패딩</a></span></li>
+								<li> <span> <a href="../panmae/plist?pcode=p020103">블루종/항공점퍼</a></span></li>
+								<li> <span> <a href="../panmae/plist?pcode=p020104">기타(패딩/점퍼)</a></span></li>
+							</ul>
+						</li>
+						<li> <span> <a href="../panmae/plist?pcode=p0202">코트</a></span>
+							<ul class="so">
+								<li> <span> <a href="../panmae/plist?pcode=p020201">겨울 코트</a></span></li>
+								<li> <span> <a href="../panmae/plist?pcode=p020202">봄/가을 코트</a></span></li>
+							</ul>
+						</li>
+						<li> <span> <a href="../panmae/plist?pcode=p0203"> 맨투맨</a></span>
+							<ul class="so">
+								<li> <span> <a href="../panmae/plist?pcode=p020301">맨투맨 등</a></span></li>
+								<li> <span> <a href="../panmae/plist?pcode=p020302">맨투맨 등</a></span></li>
+							</ul>
+						</li>
+						<li> <span> <a href="../panmae/plist?pcode=p0204">후드티/후드집업</a></span>
+							<ul class="so">
+								<li> <span> <a href="../panmae/plist?pcode=p020401">후드티/후드집업 등</a></span></li>
+							</ul>
+						</li>
+						<li> <span> <a href="../panmae/plist?pcode=p0205">티셔츠</a></span>
+							<ul class="so">
+								<li> <span> <a href="../panmae/plist?pcode=p020501">긴팔 티셔츠</a></span></li>
+								<li> <span> <a href="../panmae/plist?pcode=p020502">반팔 티셔츠</a></span></li>
+								<li> <span> <a href="../panmae/plist?pcode=p020503">민소매 티셔츠</a></span></li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+				<li><span><a href="../panmae/plist?pcode=p03">신발</a></span>
+					<ul class="jung" id="jung3">
+						<li> <span> <a href="../panmae/plist?pcode=p0301">스니커즈</a></span>
+							<ul class="so">
+								<li> <span> <a href="../panmae/plist?pcode=p030101">스니커즈 등</a></span></li>
+							</ul>
+						</li>
+						<li> <span> <a href="../panmae/plist?pcode=p0302">남성화</a></span>
+							<ul class="so">
+								<li> <span> <a href="../panmae/plist?pcode=p030201">샌들/슬리퍼</a></span></li>
+								<li> <span> <a href="../panmae/plist?pcode=p030202">구두/로퍼</a></span></li>
+								<li> <span> <a href="../panmae/plist?pcode=p030203">워커/부츠</a></span></li>
+								<li> <span> <a href="../panmae/plist?pcode=p030204">기타(남성화)</a></span></li>
+							</ul>
+						</li>
+						<li> <span> <a href="../panmae/plist?pcode=p0303">여성화</a></span>
+							<ul class="so">
+								<li> <span> <a href="../panmae/plist?pcode=p030301">샌들/슬리퍼</a></span></li>
+								<li> <span> <a href="../panmae/plist?pcode=p030302">구두</a></span></li>
+								<li> <span> <a href="../panmae/plist?pcode=p030303">단화/플랫슈즈</a></span></li>
+								<li> <span> <a href="../panmae/plist?pcode=p030304">워커/부츠</a></span></li>
+								<li> <span> <a href="../panmae/plist?pcode=p030305">기타(여성화)</a></span></li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+				<li><span><a href="../panmae/plist?pcode=p04">가방</a></span>
+					<ul class="jung" id="jung4">
+						<li> <span> <a href="../panmae/plist?pcode=p0401">여성가방</a></span>
+							<ul class="so">
+								<li> <span> <a href="../panmae/plist?pcode=p040101">클러치백</a></span></li>
+								<li> <span> <a href="../panmae/plist?pcode=p040102">숄더백</a></span></li>
+								<li> <span> <a href="../panmae/plist?pcode=p040103">크로스백</a></span></li>
+								<li> <span> <a href="../panmae/plist?pcode=p040104">토트백</a></span></li>
+								<li> <span> <a href="../panmae/plist?pcode=p040105">백팩</a></span></li>
+								<li> <span> <a href="../panmae/plist?pcode=p040106">기타(가방)</a></span></li>
+							</ul>
+						</li>
+						<li> <span> <a href="../panmae/plist?pcode=p0402">남성가방</a></span>
+							<ul class="so">
+								<li> <span> <a href="../panmae/plist?pcode=p040201">클러치백</a></span></li>
+								<li> <span> <a href="../panmae/plist?pcode=p040202">숄더백</a></span></li>
+								<li> <span> <a href="../panmae/plist?pcode=p040203">크로스백</a></span></li>
+								<li> <span> <a href="../panmae/plist?pcode=p040204">브리프케이스</a></span></li>
+								<li> <span> <a href="../panmae/plist?pcode=p040205">백팩</a></span></li>
+								<li> <span> <a href="../panmae/plist?pcode=p040206">기타(가방)</a></span></li>
+							</ul>
+						</li>
+						<li> <span> <a href="../panmae/plist?pcode=p0403">여행용</a></span>
+							<ul class="so">
+								<li> <span> <a href="../panmae/plist?pcode=p040301">캐리어</a></span></li>
+								<li> <span> <a href="../panmae/plist?pcode=p040302">기타(여행용)</a></span></li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+				<li><span><a href="../panmae/plist?pcode=p05">시계/쥬얼리</a></span>
+					<ul class="jung" id="jung5">
+						<li> <span> <a href="../panmae/plist?pcode=p0501">시계</a></span>
+							<ul class="so">
+								<li> <span> <a href="../panmae/plist?pcode=p050101">남성시계</a></span></li>
+								<li> <span> <a href="../panmae/plist?pcode=p050102">여성시계</a></span></li>
+								<li> <span> <a href="../panmae/plist?pcode=p050103">기타(시계)</a></span></li>
+							</ul>
+						</li>
+						<li> <span> <a href="../panmae/plist?pcode=p0502">쥬얼리</a></span>
+							<ul class="so">
+								<li> <span> <a href="../panmae/plist?pcode=p050201">귀걸이/피어싱</a></span></li>
+								<li> <span> <a href="../panmae/plist?pcode=p050202">목걸이/펜던트</a></span></li>
+								<li> <span> <a href="../panmae/plist?pcode=p050203">팔찌/발찌</a></span></li>
+								<li> <span> <a href="../panmae/plist?pcode=p050204">반지</a></span></li>
+								<li> <span> <a href="../panmae/plist?pcode=p050205">기타(쥬얼리)</a></span></li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+				<li>패션/액세서리 </li>
+				<li>디지털/가전 </li>
+				<li>스포츠/레저 </li>
+				<li>차량/오토바이 </li>
 				<li>스타굿즈 </li>
-				<li>유아동/출산 </li>
-				<li>가구/인테리어 </li>
-				<li>반려동물용품 </li>
+				<li>키덜트 </li>
+				<li>예술/희귀/수집품</li>
 			</ul>
 		</li>
 		<li id="m2"><a href="../want/list">구해요!</a></li>
-		<li id="m3"><a href="">이벤트</a></li>
+		<li id="m3"><a href="../event/eventlist">이벤트</a></li>
 		<li id="m4"><a href="../bmap/bmap">우리동네</a></li>
 	</ul>
 
@@ -621,12 +798,18 @@
 	<div id="f3">
 		<div style="color:#5f5f5f;font-weight:900;font-size:18px;">국민은행 채무지급보증안내</div>
 		<span style="color:#696969;font-size:12px;">
-   			블루마켓㈜는 “BGZT Digital”, “BGZT Lab”, “BGZT Lab 1”, “BGZT Lab 2”, “BGZT 컬렉션” <br>
-   			상점이 판매한 상품에 한해, 고객님이 현금 결제한 금액에 대해 우리은행과 채무지급보증 계약을 <br>
-   			체결하여 안전거래를 보장하고 있습니다.
+   			블루마켓㈜는 “BGZT Digital”, “BGZT Lab”, “BGZT Lab 1”, “BGZT Lab 2”,  <br>
+   			“BGZT  컬렉션” 상점이 판매한 상품에 한해, 고객님이 현금 결제한 금액에 대해    <br>
+   			우리은행과 채무지급보증 계약을 체결하여 안전거래를 보장하고 있습니다.
    		</span> <br> <br>
 		<span style="color:#696969;font-size:12px;">Ⓒ Bluemarket. Inc All rights reserved.</span>
 	</div>
 </footer> <!-- 사이트관련 내용 -->
+<script>
+	<c:if test="${userid != null }">
+	document.getElementById("right").style.left="736px";
+	document.getElementById("gogaeksub").style.left="75px";
+	</c:if>
+</script>
 </body>
 </html>

@@ -251,7 +251,7 @@ public class PanmaeServiceImpl implements PanmaeService {
 	public String liststate(HttpServletRequest request,Model model)
 	{
 		String pcode = request.getParameter("pcode");
-		model.addAttribute("fcode",pcode);
+		model.addAttribute("fpcode",pcode);
 
 		int n = Integer.parseInt(request.getParameter("n"));
 
@@ -295,40 +295,6 @@ public class PanmaeServiceImpl implements PanmaeService {
 		}
 
 	}
-
-	/*
-	@Override
-	public String singo_ok(HttpSession session , HttpServletRequest request)
-	{
-
-		String pcode = request.getParameter("pcode");
-
-		String userid = session.getAttribute("userid").toString();
-		String singo_userid = request.getParameter("singo_userid");
-		int pid =  Integer.parseInt(request.getParameter("pid"));
-		String content = request.getParameter("content");
-		String title = request.getParameter("title");
-
-
-		SingoVo svo = new SingoVo();
-
-		svo.setUserid(userid);
-		svo.setSingo_userid(singo_userid);
-		svo.setPid(pid);
-		svo.setContent(content);
-		svo.setTitle(title);
-
-		mapper.singo_ok(svo);
-
-
-		return "redirect:/panmae/pcontent?pcode="+pcode;
-
-	}
-
-
-	 */
-
-
 
 
 
