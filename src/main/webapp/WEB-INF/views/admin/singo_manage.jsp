@@ -85,14 +85,14 @@
             <td>처리상태</td>
             <td>내용 확인</td>
         </tr>
-        <c:if test="${mlist.size()==null}">
+        <c:if test="${slist.size()==null}">
             <td colspan="6" align="center">신고가 없습니다.</td>
         </c:if>
-        <c:if test="${mlist.size()!=null}">
+        <c:if test="${slist.size()!=null}">
             <c:forEach items="${slist}" var="svo">
                 <tr align="center" height="35">
                     <td>${svo.userid}</td>
-                    <td>${svo.singo_id}</td>
+                    <td>${svo.singo_userid}</td>
                     <td>${svo.writeday}</td>
 
                     <c:if test="${svo.state2==0}">
@@ -110,7 +110,9 @@
                     <c:if test="${svo.state2==3}">
                         <td> 회원탈퇴 </td>
                     </c:if>
-
+                    <c:if test="${svo.state2==4}">
+                        <td> 탈퇴신청 </td>
+                    </c:if>
                     <td>
                         <c:if test="${svo.state==0}">
                             처리중
@@ -127,11 +129,11 @@
         </c:if>
         <tr>
             <td colspan="6" align="center">
-                <c:if test="${pstart!=1}">
+                <c:if test="${pstart!=1 and pstart!=null}">
                     <span onclick="location='../admin/singo_manage?page=${pstart-1}&singo_table_state=${singo_table_state}'" style="cursor:pointer;"> ◀ </span>
                 </c:if>
 
-                <c:if test="${page!=1}">
+                <c:if test="${page!=1 and page!=null}">
                     <span onclick="location='../admin/singo_manage?page=${page-1}&singo_table_state=${singo_table_state}'" id="prev" style="cursor:pointer;"> < </span>
                 </c:if>
 
@@ -144,7 +146,13 @@
                         <c:set var="page_color" value=""></c:set>
                     </c:if>
 
-                    <span id="page" ${page_color} onclick="location='../admin/singo_manage?page=${i}&singo_table_state=${singo_table_state}'">${i}</span>
+                    <c:if test="${page!=null}">
+                        <span id="page" ${page_color} onclick="location='../admin/singo_manage?page=${i}&singo_table_state=${singo_table_state}'">${i}</span>
+                    </c:if>
+
+                    <c:if test="${page==null}">
+                        <span style="color:red;">1</span>
+                    </c:if>
 
                 </c:forEach>
 

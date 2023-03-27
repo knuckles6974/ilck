@@ -43,7 +43,7 @@
             border:1px solid black;
             background:white;
             margin:10px;
-            padding-top:3px;
+            padding-top:8px;
         }
 
         section #guan
@@ -73,7 +73,7 @@
         <tr>
             <td>Userid</td>
             <td>${mvo.userid}</td>
-            <td rowspan="8" align="center" width="120">
+            <td rowspan="9" align="center" width="120">
 
                 <c:if test="${mvo.state==0}">
                     <c:set var="sta1" value="style='display:none;'"/>
@@ -91,9 +91,13 @@
                     <c:set var="sta4" value="style='display:none;'"/>
                 </c:if>
 
-                <div onclick="location='member_state?id=${mvo.id}&state=0'" ${sta1} id="sta"> 일반회원 </div>
-                <div onclick="location='member_state?id=${mvo.id}&state=1'" ${sta2} id="sta"> 임시정지 </div>
-                <div onclick="location='member_state?id=${mvo.id}&state=2'" ${sta3} id="sta"> 영구정지 </div>
+                <c:if test="${mvo.state==4}">
+                    <c:set var="sta5" value="style='display:none;'"/>
+                </c:if>
+
+                <div onclick="location='member_state?id=${mvo.id}&state=0'" ${sta1} ${sta5} id="sta"> 일반회원 </div>
+                <div onclick="location='member_state?id=${mvo.id}&state=1'" ${sta2} ${sta5} id="sta"> 임시정지 </div>
+                <div onclick="location='member_state?id=${mvo.id}&state=2'" ${sta3} ${sta5} id="sta"> 영구정지 </div>
                 <div onclick="location='member_state?id=${mvo.id}&state=3'" ${sta4} id="sta"> 회원탈퇴 </div>
 
             </td>
@@ -119,6 +123,10 @@
             <td>${map.panmae_guel}개</td>
         </tr>
         <tr>
+            <td>신고받은 횟수</td>
+            <td>${mvo.singo_num}회</td>
+        </tr>
+        <tr>
             <td>가입일</td>
             <td>${mvo.writeday}</td>
         </tr>
@@ -139,6 +147,10 @@
 
             <c:if test="${mvo.state==3}">
                 <td> 회원탈퇴 </td>
+            </c:if>
+
+            <c:if test="${mvo.state==4}">
+                <td> 탈퇴신청 </td>
             </c:if>
         </tr>
     </table>
