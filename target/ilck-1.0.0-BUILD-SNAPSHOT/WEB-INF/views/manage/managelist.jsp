@@ -1,12 +1,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+         pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt"  prefix="fmt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Insert title here</title>
     <style>
         .h{
             margin: 20px 0px 32px;
@@ -52,6 +52,13 @@
         .search-box input[type="text"]:focus + button[type="submit"] i.fas {
             color: #333;
         }
+        a {
+            color:black;
+        }
+        #sujung{
+            margin-top:2px;
+
+        }
 
     </style>
     <script>
@@ -66,16 +73,13 @@
         {
             location="sellstate?state="+state;
         }
+
         function del(pcode)
         {
             if(confirm("정말 삭제하시겠습니까?"))
             {
                 location="mdelete?pcode="+pcode;
 
-            }
-            else
-            {
-                alert("제출실패");
             }
 
 
@@ -102,52 +106,53 @@
 
         <select id="state" onchange="getchangestate(this.value)">
             <option >전 체</option>
-            <option value="0">판매중</option>
-            <option value="1">예약중</option>
-            <option value="2">판매완료</option>
+            <option value="1">판매중</option>
+            <option value="2">예약중</option>
+            <option value="3">판매완료</option>
         </select>
     </form>
 
 </div>
 <br>
 
-        <table width="920" align="center" border="1">
-           <tr align="center">
-            <td width="170">메인이미지</td>
+<table width="920" align="center" border="1">
+    <tr align="center">
+        <td width="170">메인이미지</td>
 
-            <td>판매상태</td>
+        <td width="70">판매상태</td>
 
-            <td> 상품명 </td>
+        <td> 상품명 </td>
 
-            <td width="100"> 가격 </td>
-            <td>등록일</td>
-               <td>관리</td>
-           </tr>
-            <tr>
-            <c:forEach items="${mlist}" var="mvo">
-                <input type="hidden" name="userid" value="${mvo.userid}">
-                <input type="hidden" name="id" value="${mvo.id}">
-                <input type="hidden" name="pcode" value="${mvo.pcode}">
-                <td> <a href="/panmae/readnum?pcode=${mvo.pcode}"><img src="../resources/pro/${mvo.cimg}" width="170" height="100"></a></td>
+        <td width="100"> 가격 </td>
+        <td>등록일</td>
+        <td width="50">관리</td>
+    </tr>
+    <tr>
+        <c:forEach items="${mlist}" var="mvo">
+        <input type="hidden" name="userid" value="${mvo.userid}">
+        <input type="hidden" name="id" value="${mvo.id}">
+        <input type="hidden" name="pcode" value="${mvo.pcode}">
+        <td> <span onclick="location='../panmae/readnum?pcode=${mvo.pcode}'"><img src="../resources/product/${mvo.cimg}" width="170" height="100"></span></td>
 
-                <td align="center">
-                    <c:if test="${mvo.sstate==0}"> 판매중 </c:if>
-                    <c:if test="${mvo.sstate==1}"> 예약중</c:if>
-                    <c:if test="${mvo.sstate==2}"> 판매완료</c:if>
-                </td>
-                <td align="center"> ${mvo.title} </td>
-                <td align="center"> <fmt:formatNumber value="${mvo.price}" pattern="#,###" type="number"/>원</td>
-                <td align="center"> ${mvo.writeday} </td>
-                <td align="center"> <a href="../manage/mupdate?pcode=${mvo.pcode}">수 정</a>
-
-                    <span onclick="del('${mvo.pcode}')" id="delete" style=color:red cursor=pointer;>삭제</span>
-                </td>
-            </tr>
-
-            </c:forEach>
+        <td align="center">
+            <c:if test="${mvo.sstate==0}"> 판매중 </c:if>
+            <c:if test="${mvo.sstate==1}"> 예약중</c:if>
+            <c:if test="${mvo.sstate==2}"> 판매완료</c:if>
+        </td>
+        <td align="center"> ${mvo.title} </td>
+        <td align="center"> <fmt:formatNumber value="${mvo.price}" pattern="#,###" type="number"/>원</td>
+        <td align="center"> ${mvo.writeday} </td>
+        <td align="center"> <a id="sujung" href="../manage/mupdate?pcode=${mvo.pcode}">수정</a>
 
 
-        </table>
+            <span onclick="del('${mvo.pcode}')" id="delete" style="color:red;cursor:pointer;">삭제</span>
+        </td>
+    </tr>
+
+    </c:forEach>
+
+
+</table>
 
 </body>
 </html>

@@ -113,22 +113,38 @@
 		nav #search {
 			position: relative;
 			display:inline-block;
-			top:6px;
+			top:8px;
 			left:60px;
-			width:450px;
-			border:2px solid #4776b4;
+			width:430px;
+			height:40px;
+			border:3px solid #4776b4;
 			border-radius:5px;
+
 		}
-		nav #search > input {
-			width:424px;
-			border:1px solid #4776b4;
-			padding:10px 12px;
+		nav #search input[type=text] {
+			width:375px;
+			height:29px;
+			border:none;
 			outline:none;
-			font-size:14px;
+			padding-left:5px;
+			padding-top:0px;
 			font-family: 'GmarketSansMedium';
 			src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
 			font-weight: normal;
 			font-style: normal;
+			font-size:14px;
+		}
+
+
+		#searchbtn {
+			position:relative;
+			top:5px;
+			background:white;
+			width:25px;
+			height:25px;
+			border: 0;
+			cursor:pointer;
+
 		}
 		nav #dot {
 			position:absolute;
@@ -142,7 +158,7 @@
 			position:relative;
 			display:inline-block;
 			top:15px;
-			left:105px;
+			left:119px;
 		}
 		nav #account {
 			width:30px;
@@ -185,7 +201,7 @@
 			display:inline-block;
 			position:relative;
 			left:-5px;
-			top:15px;
+			top:17px;
 			z-index:9999;
 		}
 		nav #main > li {
@@ -519,7 +535,6 @@
 
 		});
 
-
 		var win_width=window.screen.width/2-225;
 		var win_height=window.screen.height/2-345;
 
@@ -528,7 +543,6 @@
 			open("../chat/chating_list", "",
 					"width=550,height=650,left="+win_width+",top="+win_height);
 		}
-
 
 	</script>
 </head>
@@ -558,17 +572,16 @@
 			<ul id="gogaeksub">
 				<li><a href="../gongji/gongji"> 공지사항 </a></li>
 				<li><a href="../qna/qna">자주하는 질문</a></li>
-				<li> 1:1 문의 </li>
 			</ul>
 		</div>
 	</div>
-
-	<div id="floatMenu">
-		<div id="float1"> 찜한상품 </div>
-		<div id="float2"> 최근본상품 </div>
-		<div id="float3" onclick="window.scrollTo(0,0);"> TOP </div>
-	</div>
-
+	<!--
+    <div id="floatMenu">
+       <div id="float1"> 찜한상품 </div>
+       <div id="float2"> 최근본상품 </div>
+       <div id="float3" onclick="window.scrollTo(0,0);"> TOP </div>
+    </div>
+    -->
 
 </header>  <!-- 로그인,회원가입 -->
 
@@ -580,13 +593,18 @@
 	<div id="logo"><a href="../main/main"><img src="../resources/img/basket.png" id="basket"> 블루마켓 </a></div>
 
 	<div id="search">
-		<input type="text" placeholder="어떤 상품을 찾으시나요 ?">
-		<img src="../resources/img/dot.png" id="dot">
+		<form id="main_search" method="post" action="../main/pro_search">
+			<input type="hidden" name="clk" value="1">
+			<input type="hidden" name="page" value="1">
+			<input type="text" name="search" placeholder="어떤 상품을 찾으시나요 ?">
+			<button type="submit" id="searchbtn">
+				<img src="../resources/img/dot.png" width="25" height="25">
+			</button>
+		</form>
 	</div>
 
 	<div id="menu1">
 		<a href="../mypage/mypage?ww=0"><img src="../resources/img/account.png" id="account"><span id="acc">내상점</span></a> <span id="vline">|</span>
-
 		<c:if test="${userid!=null}">
 			<span onclick="go_chating_list()" style="cursor:pointer;"><img src="../resources/img/talk.png" id="talk"><span id="tal"> 블루톡</span></span> <span id="vline">|</span>
 		</c:if>
@@ -594,7 +612,6 @@
 		<c:if test="${userid==null}">
 			<span style="cursor:pointer;"><img src="../resources/img/talk.png" id="talk"><span id="tal"> 블루톡</span></span> <span id="vline">|</span>
 		</c:if>
-
 		<a href="../panmae/pnew"><img src="../resources/img/sell.png" id="sell"><span id="sel">판매하기</span></a>
 	</div>
 
@@ -773,10 +790,10 @@
 		<span style="color:#5f5f5f;font-weight:900;font-size:30px;">1644-0207</span> <br>
 		<span style="color:#696969;font-size:12px;line-height:25px;">운영시간9시 -18시(주말/공휴일 휴무,점심시간 12 -13시)</span> <br>
 		<span>
-    		<a href="" style="color:#696969;font-size:12px;">공지사항</a>
-    		<a href="" style="color:#696969;font-size:12px;">1:1 문의하기</a>
-    		<a href="" style="color:#696969;font-size:12px;">자주 묻는 질문</a>
-    	</span>
+          <a href="" style="color:#696969;font-size:12px;">공지사항</a>
+          <a href="" style="color:#696969;font-size:12px;">1:1 문의하기</a>
+          <a href="" style="color:#696969;font-size:12px;">자주 묻는 질문</a>
+       </span>
 	</div>
 
 	<div id="f2">
@@ -798,10 +815,10 @@
 	<div id="f3">
 		<div style="color:#5f5f5f;font-weight:900;font-size:18px;">국민은행 채무지급보증안내</div>
 		<span style="color:#696969;font-size:12px;">
-   			블루마켓㈜는 “BGZT Digital”, “BGZT Lab”, “BGZT Lab 1”, “BGZT Lab 2”,  <br>
-   			“BGZT  컬렉션” 상점이 판매한 상품에 한해, 고객님이 현금 결제한 금액에 대해    <br>
-   			우리은행과 채무지급보증 계약을 체결하여 안전거래를 보장하고 있습니다.
-   		</span> <br> <br>
+            블루마켓㈜는 “BGZT Digital”, “BGZT Lab”, “BGZT Lab 1”, “BGZT Lab 2”,  <br>
+            “BGZT  컬렉션” 상점이 판매한 상품에 한해, 고객님이 현금 결제한 금액에 대해    <br>
+            우리은행과 채무지급보증 계약을 체결하여 안전거래를 보장하고 있습니다.
+         </span> <br> <br>
 		<span style="color:#696969;font-size:12px;">Ⓒ Bluemarket. Inc All rights reserved.</span>
 	</div>
 </footer> <!-- 사이트관련 내용 -->

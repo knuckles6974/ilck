@@ -115,6 +115,10 @@
                         <td> 회원탈퇴 </td>
                     </c:if>
 
+                    <c:if test="${mvo.state==4}">
+                        <td> 탈퇴신청 </td>
+                    </c:if>
+
                     <td> <a href="../admin/member_profile?id=${mvo.id}" style="color:blue; font-size:14px; font-weight:600;"> 클릭 </a></td>
                 </tr>
 
@@ -130,16 +134,17 @@
 
         <tr>
             <td colspan="5" align="center">
-                <c:if test="${pstart!=1}">
+                <c:if test="${pstart!=1 and pstart!=null}">
                     <span onclick="location='../admin/member_manage?page=${pstart-1}&where=${where}&search=${search}${clk_evt}'" style="cursor:pointer;"> ◀ </span>
                 </c:if>
 
-                <c:if test="${page!=1}">
+                <c:if test="${page!=1 and page!=unll}">
                     <span onclick="location='../admin/member_manage?page=${page-1}&where=${where}&search=${search}${clk_evt}'" id="prev" style="cursor:pointer;"> < </span>
                 </c:if>
 
 
                 <c:forEach begin="${pstart}" end="${pend}" var="i">
+
                     <c:if test="${page==i}">
                         <c:set var="page_color" value="style='color:red;'"/>
                     </c:if>
@@ -147,7 +152,13 @@
                         <c:set var="page_color" value=""></c:set>
                     </c:if>
 
-                    <span id="page" ${page_color} onclick="location='../admin/member_manage?page=${i}&where=${where}&search=${search}${clk_evt}'">${i}</span>
+                    <c:if test="${page!=null}">
+                        <span id="page" ${page_color} onclick="location='../admin/member_manage?page=${i}&where=${where}&search=${search}${clk_evt}'">${i}</span>
+                    </c:if>
+
+                    <c:if test="${page==null}">
+                        <span style="color:red;">1</span>
+                    </c:if>
 
                 </c:forEach>
 

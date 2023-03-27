@@ -42,9 +42,9 @@
         <ul>
             <li><a href="../admin/member_manage">회원관리</a></li>
             <li><a href="../admin/singo_manage">신고관리</a></li>
-            <li>이벤트 관리</li>
+            <li><a href="../admin/event_manage">이벤트 관리</a></li>
             <li><a href="../gongji/gongji">공지사항</a></li>
-            <li>QnA 관리</li>
+            <li><a href="../qna/qna">QnA 관리</a></li>
         </ul>
     </div>
 

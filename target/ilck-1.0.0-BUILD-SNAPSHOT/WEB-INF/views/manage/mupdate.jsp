@@ -12,10 +12,6 @@
             text-decoration: none;
             cursor: pointer;
         }
-        #pro{
-            height: 300px;
-
-        }
 
         #form input[type=submit] {
             background:blue;
@@ -23,83 +19,79 @@
 
         }
 
-        #del {
-            background:red;
-            color:white;
-            margin-left: 600px;
-            margin-top: 50px;
-            cursor: pointer;
-        }
         #up{
-            margin-left: 250px;
-            text-align: center;
+            margin-left: 120px;
             cursor: pointer;
 
         }
 
 
     </style>
-
 </head>
 <body>
 
-<div id="section">
+<section>
+    <div>
+        <form name="pro" method="post" action="mupdate_ok" enctype="multipart/form-data">
+            <table width="800" align="center">
+                <caption><h3>상품정보 수정</h3></caption>
+                <input type="hidden" name="pcode" value="${pvo.pcode}">
+                <tr>
+                    <td> 메인이미지 </td>
+                    <td> <input type="file" name="cimg" value="${pvo.cimg}"> </td>
+                </tr>
+                <tr>
+                    <td> 상세이미지 </td>
+                    <td> <input type="file" name="pimg" value="${pvo.pimg}"></td>
+                </tr>
+                <tr>
+                    <td> 제목 </td>
+                    <td> <input type="text" name="title" value="${pvo.title}"> </td>
+                </tr>
+                <tr>
+                    <td> 상품가격 </td>
+                    <td> <input type="text" name="price" value="${pvo.price}"> </td>
+                </tr>
+                <tr>
+                    <td> 거래일정 </td>
+                    <td> <input type="datetime-local" name="selltime" value="${pvo.selltime}"> </td>
+                </tr>
+                <tr>
 
-    <form name="upform" method="post" action="mupdate_ok" enctype="multipart/form-data">
-        <table id="pro" width="800" align="center">
-        <input type="hidden" name="pcode" value="${pvo.pcode}">
-            <tr>
-                <td> 메인이미지 </td>
-                <td> <input type="file" name="cimg"> </td>
-            </tr>
-            <tr>
-                <td> 상세이미지 </td>
-                <td> <input type="file" name="pimg"></td>
-            </tr>
-            <tr>
-                <td> 제목 </td>
-                <td> <input type="text" name="title" value="${pvo.title}"> </td>
-            </tr>
-            <tr>
-                <td> 상품가격 </td>
-                <td> <input type="text" name="price" value="${pvo.price}"> </td>
-            </tr>
-            <tr>
-                <td> 거래일정 </td>
-                <td> <input type="datetime-local" name="selltime" value="${pvo.selltime}"> </td>
-            </tr>
-            <tr>
+                    <td> 거래장소 </td>
+                    <td> <input type="text" name="loca" value="${pvo.loca}"> </td>
+                </tr>
+                <tr>
+                    <td> 상품상태</td>
+                    <td>
+                        <c:if test="${pvo.pstate==0}">
+                            중고상품 <input type="radio" name="pstate" checked value="1">
+                            새상품 <input type="radio" name="pstate"  value="0">
+                        </c:if>
+                        <c:if test="${pvo.pstate==1}">
+                            중고상품 <input type="radio" name="pstate" value="0">
+                            새상품 <input type="radio" name="pstate"  checked value="1">
+                        </c:if>
+                    </td>
+                </tr>
 
-                <td> 거래장소 </td>
-                <td> <input type="text" name="loca" value="${pvo.loca}"> </td>
-            </tr>
-            <tr>
-                <td> 상품상태</td>
-                <td>
-                    중고상품 <input type="radio" name="pstate"  value="0">
-                    새상품 <input type="radio" name="pstate"  value="1">
-                </td>
-            </tr>
+                <tr>
+                    <td id="description"> 상품설명 </td>
+                    <td><textarea id="productcontent" name="content" id="content">${pvo.content}</textarea></td>
+                </tr>
+                <br>
 
-            <tr>
-                <td> 상품설명 </td>
-                <td><textarea cols="50" name="content" id="content" value="${pvo.content}"></textarea></td>
-            </tr>
+                <tr>
+                    <td colspan="2"> <input type="submit" id="up" value="상품수정" > </td>
+                </tr>
+            </table>
 
+        </form>
+    </div>
+</section>
 
-            <tr>
-                <td colspan="2"> <input type="submit" id="up" value="상품수정" > </td>
-            </tr>
-        </table>
-
-    </form>
-</div>
 </body>
 </html>
-
-
-
-
 
 
 

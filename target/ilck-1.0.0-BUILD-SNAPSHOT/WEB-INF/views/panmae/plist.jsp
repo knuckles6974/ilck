@@ -7,166 +7,148 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Insert title here</title>
-
     <script>
         function filter_product(n)
         {
-            location="liststate?n="+n+"&pcode=${fpcode}";
-
+            location="liststate?n="+n+"&pcode=${fpcode}&search=${search}";
         }
     </script>
+    <style>
+        section {
+            width:1000px;
+            margin:auto;
+        }
+
+        #table {
+            position:relative;
+            top:5px;
+            margin-top:20px;
+            margin-bottom:40px;
+        }
+        #table td {
+            border:1px solid #cccccc;
+            padding:0px;
+            width:196px;
+            height:275px;
+        }
+        #table #wtitle {
+            font-size:13px;
+            display:inline-block;
+            padding-top:5px;
+            padding-left:5px;
+            align:left;
+        }
+        #table #price {
+            position:relative;
+            font-weight:bold;
+            top:-3px;
+            left:1px;
+            display:inline-block;
+            padding-left:5px;
+            width:100px;
+            font-size:14px;
+        }
+        #table #wwriteday {
+            position:relative;
+            left:20px;
+            display:inline-block;
+            font-size:10px;
+            width:65px;
+            top:-4px;
+        }
+        #ptd1:hover {
+            color: #4776b4;
+            text-decoration:underline;
+        }
+        #ptd2:hover {
+            color: #4776b4;
+            text-decoration:underline;
+        }
+
+        #ptd3:hover {
+            color: #4776b4;
+            text-decoration:underline;
+        }
+
+        #ptd4:hover {
+            color: #4776b4;
+            text-decoration:underline;
+        }
+
+
+    </style>
 </head>
-
-<style>
- section #table td {
-     position: absolute;
-     top:0px;
-     left:0px;
-     width:100%;
-     height:100%;
-     border: 1px solid white;
- }
-
-section #table div{
-    margin-left:20px;
-    padding:0px;
-    border:0px;
-    font:inherit;
-    vertical-align: baseline;
-
-}
- #title{
-     width:180px;
-     height:80px;
-     padding-bottom: 15px;
-     padding-top: 10px;
-     padding-right: 10px;
-     padding-left: 10px;
-     border: 1px;
- }
- .pname{
-    position:relative;
-     font-size: 13px;
-     padding-bottom: 20px;
-     text-overflow: ellipsis;
-     white-space: nowrap;
-     overflow-x: hidden;
-     overflow-y: hidden;
-
- }
- .won{
-     display: flex;
-     -webkit-box-pack: justify;
-     justify-content: space-between;
-     -webkit-box-align: center;
-     align-items: center;
-     height:20px;
-
- }
-
- .loca{
-     height:40px;
-     border-top:1px solid white;
-     font-size: 12px;
-     display:block;
-     padding-top: 14px;
-     padding-right: 10px;
-     padding-bottom: 14px;
-     padding-left: 35px;
-     color:grey;
-     width:100%;
-     overflow-y: hidden;
-     overflow-x: hidden;
-     text-overflow: ellipsis;
-     white-space: nowrap;
-     position: relative;
- }
-
-</style>
 <body>
 <div style="display: flex; justify-content: flex-end; margin-top: 30px;">
     <div style="margin-left: auto; margin-right:auto;">
         <input type="hidden" name="pcode" value="${pvo.pcode}">
         <input type="hidden" name="writeday" value="${pvo.writeday}">
         <input type="hidden" name="price" value="${pvo.price}">
-        <input type="hidden" name="pid" value="${pvo.pid}">
-        <span onclick="filter_product(1)" style="margin-right: 10px; color: red; cursor: pointer;">최신순</span>
-        <span onclick="filter_product(2)" style="margin-right: 10px;cursor: pointer;">저가순</span>
-        <span onclick="filter_product(3)" style="margin-right: 10px;cursor: pointer;">고가순</span>
-
+        <input type="hidden" name="readnum" value="${pvo.readnum}">
+        <span onclick="filter_product(1)" id="ptd1" style="margin-right: 10px; cursor: pointer;">최신순</span>
+        <span onclick="filter_product(4)" id="ptd2" style="margin-right: 10px; cursor: pointer;">인기순</span>
+        <span onclick="filter_product(2)" id="ptd3" style="margin-right: 10px; cursor: pointer;">저가순</span>
+        <span onclick="filter_product(3)" id="ptd4" style="margin-right: 10px; cursor: pointer;">고가순</span>
     </div>
 </div>
 <section>
-    <!--cimg, title,price, loca -->
-
-<table align="center" width="900" id="table">
-    <tr>
-        <c:forEach items="${plist}" var="pvo" varStatus="sts">
-            <td width="220" onclick="location='readnum?pcode=${pvo.pcode}'">
-                <div align="center" >
-                    <img src="../resources/pro/${pvo.cimg}" width="220" height="180">
-                </div>
-                <div id="title">
-                    <div class="pname"  width="174" height="30">${pvo.title}</div>
-
-               <!-- <div class ="price">-->
-                    <div class="won"><fmt:formatNumber value="${pvo.price}" type="number" pattern="#,###"/>원 </div>
-                </div>
-
-                <div class="loca">
-                        ${pvo.loca}
-                </div>
-
+    <table align="center" id="table">
+        <tr>
+            <c:forEach items="${plist}" var="pvo" varStatus="sts">
+            <td>
+                <div align="center" style="border-bottom:1px solid #cccccc;"><a href="readnum?pcode=${pvo.pcode}"><img src="../resources/product/${pvo.cimg}" width="196" height="210"></a></div>
+                <div id="wtitle"> ${pvo.title}</div> <p>
+                <div id="price"><fmt:formatNumber value="${pvo.price}" type="number" pattern="#,###"/>원 </div>
+                <div id="wwriteday">${pvo.writeday}</div>
             </td>
-        <c:if test="${sts.count%4==0}">
+            <c:if test="${sts.count%5 == 0}">
         </tr>
         <tr>
-        </c:if>
-        </c:forEach>
-    </tr>
-
-    <tr>
-      <td align="center" colspan="4" style="height:40px;border:none">
-        <c:if test="${pstart != 1}">
-          <a href="plist?pcode=${pcode}&page=${pstart-1}"> << </a>
-            </c:if>
-        <c:if test="${pstart == 1}">
-            <<
-            </c:if>
-        <c:if test="${page != 1}">
-            <a href="plist?pcode=${pcode}&page=${page-1}"> < </a>
-            </c:if>
-        <c:if test="${page == 1}">
-            <
-            </c:if>
-
-        <c:forEach var="i" begin="${pstart}" end="${pend}">
-            <c:if test="${page != i}">
-            <a href="plist?pcode=${pcode}&page=${i}">${i} </a>
-            </c:if>
-            <c:if test="${page == i}">
-            <span style="color:red;">${i}</span>
-
             </c:if>
             </c:forEach>
+        </tr>
+        <!-- 페이지 출력 -->
+        <tr>
+            <td align="center" colspan="5" style="height:40px;border:'1'">
+                <c:if test="${pstart!=1 and pstart!=null}">
+                    <span onclick="location='plist?pcode=${pcode}&page=${pstart-1}&search=${search}'" style="cursor:pointer;"> ◀ </span>
+                </c:if>
 
-        <c:if test="${page != chong}">
-            <a href="plist?pcode=${pcode}&page=${page+1}"> > </a>
-            </c:if>
-         <c:if test="${page == chong}">
-            >
-            </c:if>
+                <c:if test="${page!=1 and page!=null}">
+                    <span onclick="location='plist?pcode=${pcode}&page=${page-1}&search=${search}'" id="prev" style="cursor:pointer;"> < </span>
+                </c:if>
 
-        <c:if test="${pend != chong}">
-            <a href="plist?pcode=${pcode}&page=${pend+1}"> >> </a>
 
-            </c:if>
-        <c:if test="${pend == chong}">
-            >>
-            </c:if>
-      </td>
-    </tr>
-</table>
+                <c:forEach begin="${pstart}" end="${pend}" var="i">
+                    <c:if test="${page==i}">
+                        <c:set var="page_color" value="style='color:#4776b4;cursor:pointer;'"/>
+                    </c:if>
+                    <c:if test="${page!=i}">
+                        <c:set var="page_color" value=""></c:set>
+                    </c:if>
+
+                    <c:if test="${page!=null}">
+                        <span id="page" ${page_color} onclick="location='plist?pcode=${pcode}&page=${i}&search=${search}'" style="cursor:pointer;">${i}</span>
+                    </c:if>
+
+                    <c:if test="${page==null}">
+                        <span style="color:#4776b4;">1</span>
+                    </c:if>
+
+                </c:forEach>
+
+
+                <c:if test="${page!=chong and chong!=0}">
+                    <span onclick="location='plist?pcode=${pcode}&page=${page+1}&search=${search}'" id="back" style="cursor:pointer;"> > </span>
+                </c:if>
+
+                <c:if test="${!(pend>=chong)}">
+                    <span onclick="location='plist?pcode=${pcode}&page=${pend+1}&search=${search}'" style="cursor:pointer;"> ▶ </span>
+                </c:if>
+            </td>
+        </tr>
+    </table>
+
 </section>
 </body>
 </html>
